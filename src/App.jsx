@@ -14,25 +14,31 @@ import SingleProduct from "./pages/SingleProduct.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 
+// Import del provider dei prodotti
+import { ProductsProvider } from "./contexts/ProductsContext.jsx";
+
 // Componente principale dell'applicazione
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          {/* Layout di default che racchiude le varie pagine */}
-          <Route Component={DefaultLayout}>
-            {/* Rotte principali */}
-            <Route path="/" Component={HomePage} />
-            <Route path="/products" Component={ProductsPage} />
-            <Route path="/products/:id" Component={SingleProduct} />
-            <Route path="/about" Component={AboutPage} />
-            <Route path="*" Component={NotFoundPage} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ProductsProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Layout di default che racchiude le varie pagine */}
+            <Route Component={DefaultLayout}>
+              {/* Rotte principali */}
+              <Route path="/" Component={HomePage} />
+              <Route path="/products" Component={ProductsPage} />
+              <Route path="/products/:id" Component={SingleProduct} />
+              <Route path="/about" Component={AboutPage} />
+              <Route path="*" Component={NotFoundPage} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ProductsProvider>
     </>
   );
 }
 
+// Esportiamo il componente App come default
 export default App;
